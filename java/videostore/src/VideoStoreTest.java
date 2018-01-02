@@ -5,17 +5,23 @@ import static junit.framework.Assert.assertEquals;
 
 public class VideoStoreTest {
 
-    private final Movie newReleaseMovie1 = new Movie("The Cell", Movie.NEW_RELEASE);
-    private final Movie newReleaseMovie2 = new Movie("The Tigger Movie", Movie.NEW_RELEASE);
-    private final Movie newChildrensMovie = new Movie("The Tigger Movie", Movie.CHILDRENS);
-    private final Movie regularMovie1 = new Movie("Plan 9 from Outer Space", Movie.REGULAR);
-    private final Movie regularMove2 = new Movie("8 1/2", Movie.REGULAR);
-    private final Movie regularMovie3 = new Movie("Eraserhead", Movie.REGULAR);
     private Customer customer;
+    private Movie newReleaseMovie1;
+    private Movie regularMovie3;
+    private Movie newReleaseMovie2;
+    private Movie regularMovie1;
+    private Movie newChildrensMovie;
+    private Movie regularMove2;
 
     @Before
     public void setUp() {
         customer = new Customer("Fred");
+        newReleaseMovie1 = new Movie("The Cell", Movie.NEW_RELEASE);
+        newReleaseMovie2 = new Movie("The Tigger Movie", Movie.NEW_RELEASE);
+        newChildrensMovie = new Movie("The Tigger Movie", Movie.CHILDRENS);
+        regularMovie1 = new Movie("Plan 9 from Outer Space", Movie.REGULAR);
+        regularMove2 = new Movie("8 1/2", Movie.REGULAR);
+        regularMovie3 = new Movie("Eraserhead", Movie.REGULAR);
     }
 
     @Test
