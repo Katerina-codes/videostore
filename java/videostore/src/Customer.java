@@ -2,6 +2,9 @@ import java.util.Vector;
 import java.util.Enumeration;
 
 public class Customer {
+	private String name;
+	private Vector rentals = new Vector();
+
 	public Customer(String name) {
 		this.name = name;
 	}
@@ -15,7 +18,7 @@ public class Customer {
 	}
 
 	public String statement() {
-		double totalAmount = 0;
+		double amountOwed = 0;
 		int frequentRenterPoints = 0;
 		Enumeration rentals = this.rentals.elements();
 		String result = "Rental Record for " + getName() + "\n";
@@ -49,18 +52,14 @@ public class Customer {
 
 			result += "\t" + each.getMovie().getTitle() + "\t"
 					+ String.valueOf(thisAmount) + "\n";
-			totalAmount += thisAmount;
+			amountOwed += thisAmount;
 
 		}
 
-		result += "You owed " + String.valueOf(totalAmount) + "\n";
+		result += "You owed " + String.valueOf(amountOwed) + "\n";
 		result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points\n";
 
 
 		return result;
 	}
-
-
-	private String name;
-	private Vector rentals = new Vector();
 }
