@@ -27,17 +27,17 @@ public class Customer {
 
         while (rentals.hasMoreElements()) {
             double thisAmount = 0;
-            Rental each = (Rental) rentals.nextElement();
+            Rental eachMovie = (Rental) rentals.nextElement();
 
-            thisAmount = amountAccruedForRentals(thisAmount, each);
+            thisAmount = amountAccruedForRentals(thisAmount, eachMovie);
 
             frequentRenterPoints++;
 
-            if (each.getMovie().getPriceCode() == Movie.NEW_RELEASE
-                    && each.getDaysRented() > 1)
+            if (eachMovie.getMovie().getPriceCode() == Movie.NEW_RELEASE
+                    && eachMovie.getDaysRented() > 1)
                 frequentRenterPoints++;
 
-            result += "\t" + each.getMovie().getTitle() + "\t"
+            result += "\t" + eachMovie.getMovie().getTitle() + "\t"
                     + String.valueOf(thisAmount) + "\n";
             amountOwed += thisAmount;
 
