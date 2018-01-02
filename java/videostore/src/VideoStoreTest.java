@@ -5,7 +5,7 @@ import static junit.framework.Assert.assertEquals;
 
 public class VideoStoreTest {
 
-    private final Movie theCell = new Movie("The Cell", Movie.NEW_RELEASE);
+    private final Movie newReleaseMovie1 = new Movie("The Cell", Movie.NEW_RELEASE);
     private Customer customer;
 
     @Before
@@ -15,7 +15,7 @@ public class VideoStoreTest {
 
     @Test
     public void testSingleNewReleaseStatement() {
-        customer.addRental(new Rental(theCell, 3));
+        customer.addRental(new Rental(newReleaseMovie1, 3));
         customer.statement();
         assertEquals(9.0, customer.getAmountOwed());
         assertEquals(2, customer.getFrequentRenterPoints());
@@ -23,7 +23,7 @@ public class VideoStoreTest {
 
     @Test
     public void testDualNewReleaseStatement() {
-        customer.addRental(new Rental(theCell, 3));
+        customer.addRental(new Rental(newReleaseMovie1, 3));
         customer.addRental(new Rental(new Movie("The Tigger Movie", Movie.NEW_RELEASE), 3));
         customer.statement();
         assertEquals(18.0, customer.getAmountOwed());
