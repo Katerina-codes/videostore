@@ -1,9 +1,10 @@
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Enumeration;
 
 public class Customer {
     private String name;
-    private Vector rentals = new Vector();
+    private List<Rental> rentals = new ArrayList<Rental>();
     private double amountOwed;
     private int frequentRenterPoints;
 
@@ -12,7 +13,7 @@ public class Customer {
     }
 
     public void addRental(Rental rental) {
-        rentals.addElement(rental);
+        rentals.add(rental);
     }
 
     public String getName() {
@@ -22,12 +23,10 @@ public class Customer {
     public String statement() {
         amountOwed = 0;
         frequentRenterPoints = 0;
-        Enumeration rentals = this.rentals.elements();
         String result = "Rental Record for " + getName() + "\n";
 
-        while (rentals.hasMoreElements()) {
+        for (Rental eachMovie : rentals) {
             double thisAmount = 0;
-            Rental eachMovie = (Rental) rentals.nextElement();
 
             thisAmount = amountAccruedForRentals(thisAmount, eachMovie);
 
