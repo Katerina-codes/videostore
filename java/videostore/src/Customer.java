@@ -69,11 +69,16 @@ public class Customer {
                 points = getPointsForNewRelease(rental, points);
                 break;
             case Movie.CHILDRENS:
-                points += 1.5;
-                if (rental.getDaysRented() > 3)
-                    points += (rental.getDaysRented() - 3) * 1.5;
+                points = getPointsForChildrens(rental, points);
                 break;
         }
+        return points;
+    }
+
+    private double getPointsForChildrens(Rental rental, double points) {
+        points += 1.5;
+        if (rental.getDaysRented() > 3)
+            points += (rental.getDaysRented() - 3) * 1.5;
         return points;
     }
 
