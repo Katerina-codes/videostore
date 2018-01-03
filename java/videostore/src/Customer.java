@@ -6,6 +6,7 @@ public class Customer {
     private List<Rental> rentals = new ArrayList<>();
     private double amountOwed = 0;
     private int frequentRenterPoints = 0;
+    double currentAmount = 0;
 
     public Customer(String name) {
         this.name = name;
@@ -41,8 +42,6 @@ public class Customer {
 
     private String updateAmountOwedAndRenterPoints(String result) {
         for (Rental eachMovie : rentals) {
-            double currentAmount = 0;
-
             amountOwed += getAmountAccruedForRentals(currentAmount, eachMovie);
 
             getFrequentRenterPoints(eachMovie);
