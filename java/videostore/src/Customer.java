@@ -30,11 +30,7 @@ public class Customer {
 
             thisAmount = amountAccruedForRentals(thisAmount, eachMovie);
 
-            frequentRenterPoints++;
-
-            if (eachMovie.getMovie().getPriceCode() == Movie.NEW_RELEASE
-                    && eachMovie.getDaysRented() > 1)
-                frequentRenterPoints++;
+            getFrequentRenterPoints(eachMovie);
 
             result += "\t" + eachMovie.getMovie().getTitle() + "\t"
                     + String.valueOf(thisAmount) + "\n";
@@ -47,6 +43,14 @@ public class Customer {
 
 
         return result;
+    }
+
+    private void getFrequentRenterPoints(Rental eachMovie) {
+        frequentRenterPoints++;
+
+        if (eachMovie.getMovie().getPriceCode() == Movie.NEW_RELEASE
+                && eachMovie.getDaysRented() > 1)
+            frequentRenterPoints++;
     }
 
     private double amountAccruedForRentals(double thisAmount, Rental each) {
