@@ -42,8 +42,7 @@ public class Customer {
 
     private String updateAmountOwedAndRenterPoints(String result) {
         for (Rental eachMovie : rentals) {
-            amountOwed += getAmountAccruedForRentals(currentAmount, eachMovie);
-
+            amountOwed = getAmountAccruedForRentals(eachMovie);
             getFrequentRenterPoints(eachMovie);
 
             result += "\t" + eachMovie.getMovie().getTitle() + "\t" + String.valueOf(currentAmount) + "\n";
@@ -60,7 +59,7 @@ public class Customer {
         return frequentRenterPoints;
     }
 
-    private double getAmountAccruedForRentals(double currentAmount, Rental each) {
+    private double getAmountAccruedForRentals(Rental each) {
         switch (each.getMovie().getPriceCode()) {
             case Movie.REGULAR:
                 currentAmount += 2;
