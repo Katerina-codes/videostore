@@ -28,14 +28,11 @@ public class Customer {
         for (Rental eachMovie : rentals) {
             double thisAmount = 0;
 
-            thisAmount = amountAccruedForRentals(thisAmount, eachMovie);
+            amountOwed += getThisAmount(eachMovie, thisAmount);
 
             getFrequentRenterPoints(eachMovie);
 
-            result += "\t" + eachMovie.getMovie().getTitle() + "\t"
-                    + String.valueOf(thisAmount) + "\n";
-            amountOwed += thisAmount;
-
+            result += "\t" + eachMovie.getMovie().getTitle() + "\t" + String.valueOf(thisAmount) + "\n";
         }
 
         result += "You owed " + String.valueOf(amountOwed) + "\n";
@@ -43,6 +40,10 @@ public class Customer {
 
 
         return result;
+    }
+
+    private double getThisAmount(Rental eachMovie, double thisAmount) {
+        return amountAccruedForRentals(thisAmount, eachMovie);
     }
 
     public double getAmountOwed() {
