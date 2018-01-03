@@ -4,8 +4,8 @@ import java.util.List;
 public class Customer {
     private String name;
     private List<Rental> rentals = new ArrayList<>();
-    private double amountOwed;
-    private int frequentRenterPoints;
+    private double amountOwed = 0;
+    private int frequentRenterPoints = 0;
 
     public Customer(String name) {
         this.name = name;
@@ -20,19 +20,9 @@ public class Customer {
     }
 
     public String statement() {
-        amountOwed = 0;
-        frequentRenterPoints = 0;
         String result = "Rental Record for " + getName() + "\n";
 
-        for (Rental eachMovie : rentals) {
-            double currentAmount = 0;
-
-            amountOwed += getAmountAccrued(eachMovie, currentAmount);
-
-            getFrequentRenterPoints(eachMovie);
-
-            result += "\t" + eachMovie.getMovie().getTitle() + "\t" + String.valueOf(currentAmount) + "\n";
-        }
+        result = updateAmountOwedAndRenterPoints(result);
 
         result += "You owed " + String.valueOf(amountOwed) + "\n";
         result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points\n";
@@ -47,6 +37,19 @@ public class Customer {
 
     public int getFrequentRenterPoints() {
         return frequentRenterPoints;
+    }
+
+    private String updateAmountOwedAndRenterPoints(String result) {
+        for (Rental eachMovie : rentals) {
+            double currentAmount = 0;
+
+            amountOwed += getAmountAccrued(eachMovie, currentAmount);
+
+            getFrequentRenterPoints(eachMovie);
+
+            result += "\t" + eachMovie.getMovie().getTitle() + "\t" + String.valueOf(currentAmount) + "\n";
+        }
+        return result;
     }
 
     private double getAmountAccrued(Rental eachMovie, double currentAmount) {
