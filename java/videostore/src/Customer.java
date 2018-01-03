@@ -59,19 +59,19 @@ public class Customer {
         return frequentRenterPoints;
     }
 
-    private double getAmountAccruedForRentals(Rental each) {
+    private double getAmountAccruedForRentals(Rental rental) {
         double points = 0;
-        switch (each.getMovie().getPriceCode()) {
+        switch (rental.getMovie().getPriceCode()) {
             case Movie.REGULAR:
-                points = getPointsForRegular(each, points);
+                points = getPointsForRegular(rental, points);
                 break;
             case Movie.NEW_RELEASE:
-                points += each.getDaysRented() * 3;
+                points += rental.getDaysRented() * 3;
                 break;
             case Movie.CHILDRENS:
                 points += 1.5;
-                if (each.getDaysRented() > 3)
-                    points += (each.getDaysRented() - 3) * 1.5;
+                if (rental.getDaysRented() > 3)
+                    points += (rental.getDaysRented() - 3) * 1.5;
                 break;
         }
         return points;
