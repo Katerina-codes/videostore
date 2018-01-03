@@ -1,10 +1,9 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Enumeration;
 
 public class Customer {
     private String name;
-    private List<Rental> rentals = new ArrayList<Rental>();
+    private List<Rental> rentals = new ArrayList<>();
     private double amountOwed;
     private int frequentRenterPoints;
 
@@ -26,13 +25,13 @@ public class Customer {
         String result = "Rental Record for " + getName() + "\n";
 
         for (Rental eachMovie : rentals) {
-            double thisAmount = 0;
+            double currentAmount = 0;
 
-            amountOwed += getThisAmount(eachMovie, thisAmount);
+            amountOwed += getAmountAccrued(eachMovie, currentAmount);
 
             getFrequentRenterPoints(eachMovie);
 
-            result += "\t" + eachMovie.getMovie().getTitle() + "\t" + String.valueOf(thisAmount) + "\n";
+            result += "\t" + eachMovie.getMovie().getTitle() + "\t" + String.valueOf(currentAmount) + "\n";
         }
 
         result += "You owed " + String.valueOf(amountOwed) + "\n";
@@ -40,10 +39,6 @@ public class Customer {
 
 
         return result;
-    }
-
-    private double getThisAmount(Rental eachMovie, double thisAmount) {
-        return amountAccruedForRentals(thisAmount, eachMovie);
     }
 
     public double getAmountOwed() {
@@ -54,6 +49,9 @@ public class Customer {
         return frequentRenterPoints;
     }
 
+    private double getAmountAccrued(Rental eachMovie, double currentAmount) {
+        return amountAccruedForRentals(currentAmount, eachMovie);
+    }
     private void getFrequentRenterPoints(Rental eachMovie) {
         frequentRenterPoints++;
 
@@ -62,22 +60,22 @@ public class Customer {
             frequentRenterPoints++;
     }
 
-    private double amountAccruedForRentals(double thisAmount, Rental each) {
+    private double amountAccruedForRentals(double currentAmount, Rental each) {
         switch (each.getMovie().getPriceCode()) {
             case Movie.REGULAR:
-                thisAmount += 2;
+                currentAmount += 2;
                 if (each.getDaysRented() > 2)
-                    thisAmount += (each.getDaysRented() - 2) * 1.5;
+                    currentAmount += (each.getDaysRented() - 2) * 1.5;
                 break;
             case Movie.NEW_RELEASE:
-                thisAmount += each.getDaysRented() * 3;
+                currentAmount += each.getDaysRented() * 3;
                 break;
             case Movie.CHILDRENS:
-                thisAmount += 1.5;
+                currentAmount += 1.5;
                 if (each.getDaysRented() > 3)
-                    thisAmount += (each.getDaysRented() - 3) * 1.5;
+                    currentAmount += (each.getDaysRented() - 3) * 1.5;
                 break;
         }
-        return thisAmount;
+        return currentAmount;
     }
 }
