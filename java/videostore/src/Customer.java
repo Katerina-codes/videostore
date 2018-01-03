@@ -52,12 +52,13 @@ public class Customer {
         return result;
     }
 
-    private void getFrequentRenterPoints(Rental eachMovie) {
-        frequentRenterPoints++;
-
-        if (eachMovie.getMovie().getPriceCode() == Movie.NEW_RELEASE
-                && eachMovie.getDaysRented() > 1)
+    private int getFrequentRenterPoints(Rental eachMovie) {
+        if (eachMovie.getMovie().getPriceCode() == Movie.NEW_RELEASE && eachMovie.getDaysRented() > 1) {
+            frequentRenterPoints += 2;
+        } else {
             frequentRenterPoints++;
+        }
+        return frequentRenterPoints;
     }
 
     private double amountAccruedForRentals(double currentAmount, Rental each) {
