@@ -63,9 +63,7 @@ public class Customer {
         double points = 0;
         switch (each.getMovie().getPriceCode()) {
             case Movie.REGULAR:
-                points += 2;
-                if (each.getDaysRented() > 2)
-                    points += (each.getDaysRented() - 2) * 1.5;
+                points = getPointsForRegular(each, points);
                 break;
             case Movie.NEW_RELEASE:
                 points += each.getDaysRented() * 3;
@@ -76,6 +74,13 @@ public class Customer {
                     points += (each.getDaysRented() - 3) * 1.5;
                 break;
         }
+        return points;
+    }
+
+    private double getPointsForRegular(Rental each, double points) {
+        points += 2;
+        if (each.getDaysRented() > 2)
+            points += (each.getDaysRented() - 2) * 1.5;
         return points;
     }
 }
