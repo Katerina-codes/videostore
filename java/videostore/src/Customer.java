@@ -45,6 +45,14 @@ public class Customer {
         return result;
     }
 
+    public double getAmountOwed() {
+        return amountOwed;
+    }
+
+    public int getFrequentRenterPoints() {
+        return frequentRenterPoints;
+    }
+
     private void getFrequentRenterPoints(Rental eachMovie) {
         frequentRenterPoints++;
 
@@ -70,13 +78,5 @@ public class Customer {
                 break;
         }
         return thisAmount;
-    }
-
-    public double getAmountOwed() {
-        return amountOwed;
-    }
-
-    public int getFrequentRenterPoints() {
-        return frequentRenterPoints;
     }
 }
