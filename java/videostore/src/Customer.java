@@ -43,7 +43,7 @@ public class Customer {
         for (Rental eachMovie : rentals) {
             double currentAmount = 0;
 
-            amountOwed += getAmountAccrued(eachMovie, currentAmount);
+            amountOwed += amountAccruedForRentals(currentAmount, eachMovie);
 
             getFrequentRenterPoints(eachMovie);
 
@@ -52,9 +52,6 @@ public class Customer {
         return result;
     }
 
-    private double getAmountAccrued(Rental eachMovie, double currentAmount) {
-        return amountAccruedForRentals(currentAmount, eachMovie);
-    }
     private void getFrequentRenterPoints(Rental eachMovie) {
         frequentRenterPoints++;
 
