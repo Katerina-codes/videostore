@@ -28,7 +28,6 @@ public class Customer {
         result += "You owed " + String.valueOf(amountOwed) + "\n";
         result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points\n";
 
-
         return result;
     }
 
