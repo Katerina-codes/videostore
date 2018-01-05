@@ -11,6 +11,10 @@ public class Movie {
 		this.priceCode = priceCode;
 	}
 
+	public double getAmount(int days) {
+		return -1;
+	}
+
 	public int getPriceCode() {
 		return priceCode;
 	}
