@@ -41,7 +41,7 @@ public class Customer {
 
     private String updateAmountOwedAndRenterPoints(String result) {
         for (Rental eachMovie : rentals) {
-            amountOwed += getAmountAccruedForRentals(eachMovie);
+            amountOwed += getAmountForRental(eachMovie);
             frequentRenterPoints += getFrequentRenterPoints(eachMovie);
 
             result += "\t" + eachMovie.getMovie().getTitle() + "\t" + String.valueOf(currentAmount) + "\n";
@@ -57,30 +57,30 @@ public class Customer {
         }
     }
 
-    private double getAmountAccruedForRentals(Rental rental) {
+    private double getAmountForRental(Rental rental) {
         switch (rental.getMovie().getPriceCode()) {
             case Movie.REGULAR:
-                return getPointsForRegular(rental);
+                return getAmountForRegular(rental);
             case Movie.NEW_RELEASE:
-                return getPointsForNewRelease(rental);
+                return getAmountForNewRelease(rental);
             case Movie.CHILDRENS:
-                return getPointsForChildrens(rental);
+                return getAmountForChildrens(rental);
         }
         return 0;
     }
 
-    private double getPointsForChildrens(Rental rental) {
+    private double getAmountForChildrens(Rental rental) {
         double points = 1.5;
         if (rental.getDaysRented() > 3)
             points += (rental.getDaysRented() - 3) * 1.5;
         return points;
     }
 
-    private double getPointsForNewRelease(Rental rental) {
+    private double getAmountForNewRelease(Rental rental) {
         return rental.getDaysRented() * 3;
     }
 
-    private double getPointsForRegular(Rental each) {
+    private double getAmountForRegular(Rental each) {
         double points = 2;
         if (each.getDaysRented() > 2)
             points += (each.getDaysRented() - 2) * 1.5;
