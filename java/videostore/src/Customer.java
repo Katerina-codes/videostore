@@ -42,7 +42,7 @@ public class Customer {
     private String updateAmountOwedAndRenterPoints(String result) {
         for (Rental eachMovie : rentals) {
             amountOwed += getAmountAccruedForRentals(eachMovie);
-            getFrequentRenterPoints(eachMovie);
+            frequentRenterPoints += getFrequentRenterPoints(eachMovie);
 
             result += "\t" + eachMovie.getMovie().getTitle() + "\t" + String.valueOf(currentAmount) + "\n";
         }
@@ -51,43 +51,37 @@ public class Customer {
 
     private int getFrequentRenterPoints(Rental eachMovie) {
         if (eachMovie.getMovie().getPriceCode() == Movie.NEW_RELEASE && eachMovie.getDaysRented() > 1) {
-            frequentRenterPoints += 2;
+            return 2;
         } else {
-            frequentRenterPoints++;
+            return 1;
         }
-        return frequentRenterPoints;
     }
 
     private double getAmountAccruedForRentals(Rental rental) {
-        double points = 0;
         switch (rental.getMovie().getPriceCode()) {
             case Movie.REGULAR:
-                points = getPointsForRegular(rental, points);
-                break;
+                return getPointsForRegular(rental);
             case Movie.NEW_RELEASE:
-                points = getPointsForNewRelease(rental, points);
-                break;
+                return getPointsForNewRelease(rental);
             case Movie.CHILDRENS:
-                points = getPointsForChildrens(rental, points);
-                break;
+                return getPointsForChildrens(rental);
         }
-        return points;
+        return 0;
     }
 
-    private double getPointsForChildrens(Rental rental, double points) {
-        points += 1.5;
+    private double getPointsForChildrens(Rental rental) {
+        double points = 1.5;
         if (rental.getDaysRented() > 3)
             points += (rental.getDaysRented() - 3) * 1.5;
         return points;
     }
 
-    private double getPointsForNewRelease(Rental rental, double points) {
-        points += rental.getDaysRented() * 3;
-        return points;
+    private double getPointsForNewRelease(Rental rental) {
+        return rental.getDaysRented() * 3;
     }
 
-    private double getPointsForRegular(Rental each, double points) {
-        points += 2;
+    private double getPointsForRegular(Rental each) {
+        double points = 2;
         if (each.getDaysRented() > 2)
             points += (each.getDaysRented() - 2) * 1.5;
         return points;
