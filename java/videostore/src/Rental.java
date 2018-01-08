@@ -1,13 +1,11 @@
-public class Rental { public Rental(Movie movie, int daysRented) {
+public class Rental {
+
+    public Rental(Movie movie, int daysRented) {
 		this.movie = movie;
 		this.daysRented = daysRented;
 	}
 
-	public int getDaysRented() {
-		return daysRented;
-	}
-
-	public Movie getMovie() {
+    public Movie getMovie() {
 		return movie;
 	}
 
@@ -19,11 +17,7 @@ public class Rental { public Rental(Movie movie, int daysRented) {
     }
 
     int getFrequentRenterPoints() {
-        if (movie instanceof NewReleaseMovie) {
-            return ((NewReleaseMovie) movie).getFrequentRenterPoints(daysRented);
-        } else {
-            return 1;
-        }
+        return movie.getFrequentRenterPoints(daysRented);
     }
 
 }

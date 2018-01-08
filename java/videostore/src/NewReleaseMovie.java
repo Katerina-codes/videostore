@@ -9,11 +9,12 @@ public class NewReleaseMovie extends Movie {
         return days * 3;
     }
 
-    int getFrequentRenterPoints(int daysRented) {
+    @Override
+    public int getFrequentRenterPoints(int daysRented) {
        if (daysRented > 1) {
            return 2;
        } else {
-           return 1;
+           return super.getFrequentRenterPoints(daysRented);
        }
     }
 }

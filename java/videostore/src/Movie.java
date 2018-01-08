@@ -11,4 +11,7 @@ public abstract class Movie {
 		return title;
 	}
 
+	public int getFrequentRenterPoints(int daysRented) {
+		return 1;
+	}
 }
