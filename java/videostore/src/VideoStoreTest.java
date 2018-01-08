@@ -25,37 +25,43 @@ public class VideoStoreTest {
     }
 
     @Test
-    public void testSingleNewReleaseStatement() {
-        customer.addRental(new Rental(newReleaseMovie1, 3));
-        customer.statement();
-        assertEquals(9.0, customer.getAmountOwed());
-        assertEquals(2, customer.getFrequentRenterPoints());
+    public void singleNewReleaseStatement () {
+        customer.addRental (new Rental (new Movie ("The Cell", Movie.NEW_RELEASE), 3));
+        assertEquals ("Rental Record for Fred\n\tThe Cell\t9.0\nYou owed 9.0\nYou earned 2 frequent renter points\n", customer.statement ());
     }
 
     @Test
-    public void testDualNewReleaseStatement() {
+    public void singleNewRelease() {
+        customer.addRental(new Rental(newReleaseMovie1, 3));
+        customer.statement();
+        assertEquals(9.0, customer.totalAmountOwed());
+        assertEquals(2, customer.frequentRenterPoints());
+    }
+
+    @Test
+    public void multipleNewReleases() {
         customer.addRental(new Rental(newReleaseMovie1, 3));
         customer.addRental(new Rental(newReleaseMovie2, 3));
         customer.statement();
-        assertEquals(18.0, customer.getAmountOwed());
-        assertEquals(4, customer.getFrequentRenterPoints());
+        assertEquals(18.0, customer.totalAmountOwed());
+        assertEquals(4, customer.frequentRenterPoints());
     }
 
     @Test
-    public void testSingleChildrensStatement() {
+    public void childrensMovie() {
         customer.addRental(new Rental(newChildrensMovie, 3));
         customer.statement();
-        assertEquals(1.5, customer.getAmountOwed());
-        assertEquals(1, customer.getFrequentRenterPoints());
+        assertEquals(1.5, customer.totalAmountOwed());
+        assertEquals(1, customer.frequentRenterPoints());
     }
 
     @Test
-    public void testMultipleRegularStatement() {
+    public void multipleRegular() {
         customer.addRental(new Rental(regularMovie1, 1));
         customer.addRental(new Rental(regularMove2, 2));
         customer.addRental(new Rental(regularMovie3, 3));
         customer.statement();
-        assertEquals(7.5, customer.getAmountOwed());
-        assertEquals(3, customer.getFrequentRenterPoints());
+        assertEquals(7.5, customer.totalAmountOwed());
+        assertEquals(3, customer.frequentRenterPoints());
     }
 }
