@@ -19,4 +19,7 @@ public class Movie {
 		return title;
 	}
 
+	public static double getAmount(int days) {
+		return 0;
+	}
 }

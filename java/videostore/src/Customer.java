@@ -49,5 +49,4 @@ public class Customer {
             return 1;
         }
     }
-
 }

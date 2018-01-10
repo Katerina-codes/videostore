@@ -15,7 +15,6 @@ public class Rental {
 		return movie;
 	}
 
-
     public static double getAmountForRental(Rental rental) {
         int days = rental.daysRented;
         switch (rental.getMovie().getPriceCode()) {

@@ -1,4 +1,8 @@
-public class RegularMovie {
+public class RegularMovie  extends Movie {
+
+    public RegularMovie(String title, int priceCode) {
+        super(title, priceCode);
+    }
 
     public static double getAmount(int days) {
         double points = 2;
