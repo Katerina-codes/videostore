@@ -1,7 +1,6 @@
 public class RegularMovie {
 
-    private double getAmountForRegular(Rental rental) {
-        int days = rental.getDaysRented();
+    public static double getAmount(int days) {
         double points = 2;
         if (days > 2)
             points += (days - 2) * 1.5;
