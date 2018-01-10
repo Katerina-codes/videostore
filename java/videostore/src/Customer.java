@@ -17,7 +17,7 @@ public class Customer {
         String statement = "Rental Record for " + name + "\n";
 
         for (Rental rental : rentals) {
-            statement += "\t" + rental.getMovie().getTitle() + "\t" + getAmountForRental(rental) + "\n";
+            statement += "\t" + rental.getMovie().getTitle() + "\t" + Rental.getAmountForRental(rental) + "\n";
         }
 
         statement += "You owed " + totalAmountOwed() + "\n";
@@ -29,7 +29,7 @@ public class Customer {
     public double totalAmountOwed() {
         double totalAmountOwed = 0;
         for (Rental rental : rentals) {
-            totalAmountOwed += getAmountForRental(rental);
+            totalAmountOwed += Rental.getAmountForRental(rental);
         }
         return totalAmountOwed;
     }
@@ -50,33 +50,4 @@ public class Customer {
         }
     }
 
-    private double getAmountForRental(Rental rental) {
-        switch (rental.getMovie().getPriceCode()) {
-            case Movie.REGULAR:
-                return getAmountForRegular(rental);
-            case Movie.NEW_RELEASE:
-                return getAmountForNewRelease(rental);
-            case Movie.CHILDRENS:
-                return getAmountForChildrens(rental);
-        }
-        return 0;
-    }
-
-    private double getAmountForChildrens(Rental rental) {
-        double points = 1.5;
-        if (rental.getDaysRented() > 3)
-            points += (rental.getDaysRented() - 3) * 1.5;
-        return points;
-    }
-
-    private double getAmountForNewRelease(Rental rental) {
-        return rental.getDaysRented() * 3;
-    }
-
-    private double getAmountForRegular(Rental rental) {
-        double points = 2;
-        if (rental.getDaysRented() > 2)
-            points += (rental.getDaysRented() - 2) * 1.5;
-        return points;
-    }
 }
