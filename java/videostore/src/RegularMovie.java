@@ -1,7 +1,7 @@
-public class RegularMovie  extends Movie {
+public class RegularMovie extends Movie {
 
-    public RegularMovie(String title, int priceCode) {
-        super(title, priceCode);
+    public RegularMovie(String title) {
+        super(title);
     }
 
     public double getAmount(int days) {
@@ -9,5 +9,9 @@ public class RegularMovie  extends Movie {
         if (days > 2)
             points += (days - 2) * 1.5;
         return points;
+    }
+
+    public int frequentRenterPoints(int daysRented) {
+        return 1;
     }
 }

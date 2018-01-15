@@ -16,12 +16,12 @@ public class VideoStoreTest {
     @Before
     public void setUp() {
         customer = new Customer("Fred");
-        newReleaseMovie1 = new NewReleaseMovie("The Cell", Movie.NEW_RELEASE);
-        newReleaseMovie2 = new NewReleaseMovie("The Tigger Movie", Movie.NEW_RELEASE);
-        newChildrensMovie = new ChildrensMovie("The Tigger Movie", Movie.CHILDRENS);
-        regularMovie1 = new RegularMovie("Plan 9 from Outer Space", Movie.REGULAR);
-        regularMove2 = new RegularMovie("8 1/2", Movie.REGULAR);
-        regularMovie3 = new RegularMovie("Eraserhead", Movie.REGULAR);
+        newReleaseMovie1 = new NewReleaseMovie("The Cell");
+        newReleaseMovie2 = new NewReleaseMovie("The Tigger Movie");
+        newChildrensMovie = new ChildrensMovie("The Tigger Movie");
+        regularMovie1 = new RegularMovie("Plan 9 from Outer Space");
+        regularMove2 = new RegularMovie("8 1/2");
+        regularMovie3 = new RegularMovie("Eraserhead");
     }
 
     @Test

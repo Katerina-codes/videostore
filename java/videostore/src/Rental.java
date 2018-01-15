@@ -18,4 +18,8 @@ public class Rental {
     public double getAmountForRental() {
        return getMovie().getAmount(daysRented);
     }
+
+	public int frequentRenterPoints() {
+		return getMovie().frequentRenterPoints(getDaysRented());
+    }
 }
