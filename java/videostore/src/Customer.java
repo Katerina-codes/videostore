@@ -29,7 +29,7 @@ public class Customer {
     public double totalAmountOwed() {
         double totalAmountOwed = 0;
         for (Rental rental : rentals) {
-            totalAmountOwed += Rental.getAmountForRental(rental);
+            totalAmountOwed += rental.getAmountForRental();
         }
         return totalAmountOwed;
     }
