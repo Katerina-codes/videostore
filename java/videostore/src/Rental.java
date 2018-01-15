@@ -27,4 +27,8 @@ public class Rental {
         }
         return 0;
     }
+
+    public double getAmountForRental() {
+        return getAmountForRental(this);
+    }
 }

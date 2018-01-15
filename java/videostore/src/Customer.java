@@ -17,7 +17,7 @@ public class Customer {
         String statement = "Rental Record for " + name + "\n";
 
         for (Rental rental : rentals) {
-            statement += "\t" + rental.getMovie().getTitle() + "\t" + Rental.getAmountForRental(rental) + "\n";
+            statement += "\t" + rental.getMovie().getTitle() + "\t" + rental.getAmountForRental() + "\n";
         }
 
         statement += "You owed " + totalAmountOwed() + "\n";
