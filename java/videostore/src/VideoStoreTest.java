@@ -27,7 +27,10 @@ public class VideoStoreTest {
     @Test
     public void singleNewReleaseStatement () {
         customer.addRental (new Rental (new Movie ("The Cell", Movie.NEW_RELEASE), 3));
-        assertEquals ("Rental Record for Fred\n\tThe Cell\t9.0\nYou owed 9.0\nYou earned 2 frequent renter points\n", customer.statement ());
+        assertEquals ("Rental Record for Fred\n" +
+                "\tThe Cell\t9.0\n" +
+                "You owed 9.0\n" +
+                "You earned 2 frequent renter points\n", customer.statement ());
     }
 
     @Test
