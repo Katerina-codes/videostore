@@ -16,17 +16,17 @@ public class VideoStoreTest {
     @Before
     public void setUp() {
         customer = new Customer("Fred");
-        newReleaseMovie1 = new Movie("The Cell", Movie.NEW_RELEASE);
-        newReleaseMovie2 = new Movie("The Tigger Movie", Movie.NEW_RELEASE);
-        newChildrensMovie = new Movie("The Tigger Movie", Movie.CHILDRENS);
-        regularMovie1 = new Movie("Plan 9 from Outer Space", Movie.REGULAR);
-        regularMove2 = new Movie("8 1/2", Movie.REGULAR);
-        regularMovie3 = new Movie("Eraserhead", Movie.REGULAR);
+        newReleaseMovie1 = new NewReleaseMovie("The Cell", Movie.NEW_RELEASE);
+        newReleaseMovie2 = new NewReleaseMovie("The Tigger Movie", Movie.NEW_RELEASE);
+        newChildrensMovie = new ChildrensMovie("The Tigger Movie", Movie.CHILDRENS);
+        regularMovie1 = new RegularMovie("Plan 9 from Outer Space", Movie.REGULAR);
+        regularMove2 = new RegularMovie("8 1/2", Movie.REGULAR);
+        regularMovie3 = new RegularMovie("Eraserhead", Movie.REGULAR);
     }
 
     @Test
     public void singleNewReleaseStatement () {
-        customer.addRental (new Rental (new Movie ("The Cell", Movie.NEW_RELEASE), 3));
+        customer.addRental (new Rental (newReleaseMovie1, 3));
         assertEquals ("Rental Record for Fred\n" +
                 "\tThe Cell\t9.0\n" +
                 "You owed 9.0\n" +

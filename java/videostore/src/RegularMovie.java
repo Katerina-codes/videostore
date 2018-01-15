@@ -4,7 +4,7 @@ public class RegularMovie  extends Movie {
         super(title, priceCode);
     }
 
-    public static double getAmount(int days) {
+    public double getAmount(int days) {
         double points = 2;
         if (days > 2)
             points += (days - 2) * 1.5;

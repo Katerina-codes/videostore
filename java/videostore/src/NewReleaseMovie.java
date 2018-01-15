@@ -4,7 +4,7 @@ public class NewReleaseMovie extends Movie {
         super(title, priceCode);
     }
 
-    public static double getAmount(int days) {
+    public double getAmount(int days) {
         return days * 3;
     }
 }
