@@ -26,7 +26,7 @@ public class VideoStoreTest {
 
     @Test
     public void singleNewReleaseStatement () {
-        customer.addRental (new Rental (newReleaseMovie1, 3));
+        customer.addRental(new Rental (newReleaseMovie1, 3));
         assertEquals ("Rental Record for Fred\n" +
                 "\tThe Cell\t9.0\n" +
                 "You owed 9.0\n" +
