@@ -41,5 +41,4 @@ public class Customer {
         }
         return frequentRenterPoints;
     }
-
 }

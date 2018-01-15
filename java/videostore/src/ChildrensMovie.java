@@ -10,8 +10,4 @@ public class ChildrensMovie extends Movie {
             points += (days - 3) * 1.5;
         return points;
     }
-
-    public int frequentRenterPoints(int daysRented) {
-        return 1;
-    }
 }

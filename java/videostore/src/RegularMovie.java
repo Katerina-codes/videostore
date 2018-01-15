@@ -11,7 +11,4 @@ public class RegularMovie extends Movie {
         return points;
     }
 
-    public int frequentRenterPoints(int daysRented) {
-        return 1;
-    }
 }
