@@ -1,18 +1,25 @@
-public class Rental
-{
-	public Rental (Movie movie, int daysRented) {
-		this.movie 		= movie;
-		this.daysRented = daysRented;
-	}
+public class Rental {
+    private int daysRented;
+    private Movie movie;
 
-	public int getDaysRented () {
-		return daysRented;
-	}
+    public Rental(Movie movie, int daysRented) {
+        this.movie = movie;
+        this.daysRented = daysRented;
+    }
 
-	public Movie getMovie () {
-		return movie;
-	}
+    public int getDaysRented() {
+        return daysRented;
+    }
 
-	private Movie movie;
-	private int daysRented;
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public double getAmountForRental() {
+        return getMovie().getAmount(daysRented);
+    }
+
+    public int frequentRenterPoints() {
+        return getMovie().frequentRenterPoints(getDaysRented());
+    }
 }

@@ -1,27 +1,18 @@
-public class Movie
-{
-	public static final int CHILDRENS	= 2;
-	public static final int REGULAR 	= 0;
-	public static final int NEW_RELEASE = 1;
+public abstract class Movie {
 
-	private String title;
-	private int priceCode;
+    private String title;
 
-	public Movie (String title, int priceCode) {
-		this.title 		= title;
-		this.priceCode 	= priceCode;
-	}
+    public Movie(String title) {
+        this.title = title;
+    }
 
-	public int getPriceCode () {
-		return priceCode;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public void setPriceCode (int code) {
-		priceCode = code;
-	}
+    public abstract double getAmount(int days);
 
-	public String getTitle () {
-		return title;
-	}
-
+    public int frequentRenterPoints(int daysRented) {
+        return 1;
+    }
 }

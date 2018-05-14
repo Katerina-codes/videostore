@@ -1,38 +1,70 @@
-import junit.framework.*;
+import org.junit.Before;
+import org.junit.Test;
 
-public class VideoStoreTest extends TestCase
-{
-	public VideoStoreTest (String name) {
-		super (name);
-	}
+import static junit.framework.Assert.assertEquals;
 
-	protected void setUp ()  {
-		customer = new Customer ("Fred");
-	}
+public class VideoStoreTest {
 
-	public void testSingleNewReleaseStatement () {
-		customer.addRental (new Rental (new Movie ("The Cell", Movie.NEW_RELEASE), 3));
-		assertEquals ("Rental Record for Fred\n\tThe Cell\t9.0\nYou owed 9.0\nYou earned 2 frequent renter points\n", customer.statement ());
-	}
+    private Customer customer;
+    private Movie newReleaseMovie1;
+    private Movie regularMovie3;
+    private Movie newReleaseMovie2;
+    private Movie regularMovie1;
+    private Movie newChildrensMovie;
+    private Movie regularMove2;
 
-	public void testDualNewReleaseStatement () {
-		customer.addRental (new Rental (new Movie ("The Cell", Movie.NEW_RELEASE), 3));
-		customer.addRental (new Rental (new Movie ("The Tigger Movie", Movie.NEW_RELEASE), 3));
-		assertEquals ("Rental Record for Fred\n\tThe Cell\t9.0\n\tThe Tigger Movie\t9.0\nYou owed 18.0\nYou earned 4 frequent renter points\n", customer.statement ());
-	}
+    @Before
+    public void setUp() {
+        customer = new Customer("Fred");
+        newReleaseMovie1 = new NewReleaseMovie("The Cell");
+        newReleaseMovie2 = new NewReleaseMovie("The Tigger Movie");
+        newChildrensMovie = new ChildrensMovie("The Tigger Movie");
+        regularMovie1 = new RegularMovie("Plan 9 from Outer Space");
+        regularMove2 = new RegularMovie("8 1/2");
+        regularMovie3 = new RegularMovie("Eraserhead");
+    }
 
-	public void testSingleChildrensStatement () {
-		customer.addRental (new Rental (new Movie ("The Tigger Movie", Movie.CHILDRENS), 3));
-		assertEquals ("Rental Record for Fred\n\tThe Tigger Movie\t1.5\nYou owed 1.5\nYou earned 1 frequent renter points\n", customer.statement ());
-	}
+    @Test
+    public void singleNewReleaseStatement() {
+        customer.addRental(new Rental(newReleaseMovie1, 3));
+        assertEquals("Rental Record for Fred\n" +
+                "\tThe Cell\t9.0\n" +
+                "You owed 9.0\n" +
+                "You earned 2 frequent renter points\n", customer.statement());
+    }
 
-	public void testMultipleRegularStatement () {
-		customer.addRental (new Rental (new Movie ("Plan 9 from Outer Space", Movie.REGULAR), 1));
-		customer.addRental (new Rental (new Movie ("8 1/2", Movie.REGULAR), 2));
-		customer.addRental (new Rental (new Movie ("Eraserhead", Movie.REGULAR), 3));
+    @Test
+    public void singleNewRelease() {
+        customer.addRental(new Rental(newReleaseMovie1, 3));
+        customer.statement();
+        assertEquals(9.0, customer.totalAmountOwed());
+        assertEquals(2, customer.frequentRenterPoints());
+    }
 
-		assertEquals ("Rental Record for Fred\n\tPlan 9 from Outer Space\t2.0\n\t8 1/2\t2.0\n\tEraserhead\t3.5\nYou owed 7.5\nYou earned 3 frequent renter points\n", customer.statement ());
-	}
+    @Test
+    public void multipleNewReleases() {
+        customer.addRental(new Rental(newReleaseMovie1, 3));
+        customer.addRental(new Rental(newReleaseMovie2, 3));
+        customer.statement();
+        assertEquals(18.0, customer.totalAmountOwed());
+        assertEquals(4, customer.frequentRenterPoints());
+    }
 
-	private Customer customer;
+    @Test
+    public void childrensMovie() {
+        customer.addRental(new Rental(newChildrensMovie, 3));
+        customer.statement();
+        assertEquals(1.5, customer.totalAmountOwed());
+        assertEquals(1, customer.frequentRenterPoints());
+    }
+
+    @Test
+    public void multipleRegular() {
+        customer.addRental(new Rental(regularMovie1, 1));
+        customer.addRental(new Rental(regularMove2, 2));
+        customer.addRental(new Rental(regularMovie3, 3));
+        customer.statement();
+        assertEquals(7.5, customer.totalAmountOwed());
+        assertEquals(3, customer.frequentRenterPoints());
+    }
 }
